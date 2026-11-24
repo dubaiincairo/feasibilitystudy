@@ -1,0 +1,23 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    {
+      "source": "/((?!mobile\\.html$|og-image\\.jpg$|robots\\.txt$|favicon\\.ico$).*)",
+      "has": [
+        {
+          "type": "header",
+          "key": "user-agent",
+          "value": ".*(iPhone|iPod|Android.+Mobile|Windows Phone|IEMobile|BlackBerry|BB10|Opera Mini).*"
+        }
+      ],
+      "destination": "/mobile.html",
+      "permanent": false
+    }
+  ],
+  "headers": [
+    { "source": "/(.*)", "headers": [
+      { "key": "Vary", "value": "User-Agent" },
+      { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
+    ] }
+  ]
+}
